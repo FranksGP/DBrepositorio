@@ -1,0 +1,64 @@
+
+CREATE TABLE productos (
+    id_productos INTEGER PRIMARY KEY AUTOINC,
+    nombre varchar(25),
+    marca varchar(25),
+    ml INT NOT NULL, 
+    por_alcohol INT NOT NULL,
+    precio INT NOT NULL,
+    proveedor varchar(25)  
+);
+
+CREATE TABLE categorias (
+    id_categorias INTEGER PRIMARY KEY AUTOINC,
+    nombre varchar(25),
+    descripcion varchar(100)
+);
+
+CREATE TABLE proveedores (
+    id_proveedores INTEGER PRIMARY KEY AUTOINC,
+    nombre varchar(25),
+    direccion varchar(25),
+    telefono varchar(25),
+    email varchar(25)
+);
+
+CREATE TABLE cliente (
+    id_clientes INTEGER PRIMARY KEY AUTOINC,
+    nombre varchar(25),
+    apellido varchar(25),
+    direccion varchar(25),
+    telefono INT,
+    email varchar(25)
+);
+
+CREATE TABLE ventas (
+    id_ventas INTEGER PRIMARY KEY AUTOINC,
+    id_clientes INT,
+    id_empleados INT,
+    id_productos INT,
+    fecha DATE,
+    total INT,
+    FOREIGN KEY (id_clientes) REFERENCES clientes(id_clientes)
+);
+
+CREATE TABLE empleados (
+    id_empleados INTEGER PRIMARY KEY AUTOINC,
+    nombre varchar(25),
+    apellido varchar(25),
+    cargo varchar(25),
+    telefono INT,
+    direccion varchar(25),
+    salario int,
+);
+
+CREATE TABLE detalles_ventas (
+    id_detalle INTEGER PRIMARY KEY AUTOINC,
+    id_ventas INT,
+    id_productos INT,
+    cantidad INT,
+    preciounitario INT,
+    subtotal INT
+);
+
+
